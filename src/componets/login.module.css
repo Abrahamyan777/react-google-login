@@ -1,0 +1,6 @@
+.comments > ul > li{
+    display: block;
+}
+.noComments > ul > li {
+    display: none;
+}
