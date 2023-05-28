@@ -15,6 +15,7 @@ function Login() {
         fetch('https://dummyjson.com/posts')
             .then(res => res.json())
             .then((data) => setPost(data.posts));
+           
 
         fetch('https://dummyjson.com/comments')
             .then(res => res.json())
@@ -23,6 +24,7 @@ function Login() {
     const onFailure = (err) => {
         console.log('failed:', err);
     };
+    console.log(post);
 
     return (
         <div id='signIdButton'>
@@ -41,14 +43,18 @@ function Login() {
                             post &&
                             post.map(({ title, id }, i) => {
                                 return <li key={id} 
+                                    
                                     className={!stayle ? css.comments : css.noComments}
-                                    onClick={() => setStayle(!stayle)}
+                                    onClick={() => {
+                                        console.log(id)
+                                        setStayle(!stayle)}}
                                 >
                                     <a href='#'>{title}</a>
                                     <ul>
                                         {
                                             comm &&
-                                            comm.filter(co => co.id === post[i].id).map((filteredName) => (
+                                            comm.filter(co => co.id === post[i].id)
+                                                .map((filteredName) => (
                                                 <li key={id}> {filteredName.body}</li>
                                             ))
                                         }
